@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paraja Ramos Fisioterapia — Gijón, Asturias</title>
+  <meta name="description" content="Fisioterapia especializada en Gijón. Terapia manual, rehabilitación, lesiones deportivas y prevención. Lucía Paraja Ramos. 5 estrellas en Google. Av. de Portugal 9.">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Paraja Ramos Fisioterapia — Gijón">
+  <meta property="og:description" content="Especialistas en terapia manual, deporte y prevención. Pide tu cita hoy.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap">
+  <script defer src="lib/gsap.min.js?v=20260530"></script>
+  <script defer src="lib/ScrollTrigger.min.js?v=20260530"></script>
+  <style>
+    /* ── Reset & custom properties ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #ffffff;
+      --bg-section:  #f4f7f6;
+      --bg-dark:     #0b0f14;
+      --ink:         #0b0f14;
+      --ink-soft:    #4a5568;
+      --ink-mute:    #8a9aaf;
+      --teal:        #0abfa3;
+      --teal-dark:   #089880;
+      --teal-light:  #e0faf7;
+      --teal-glass:  rgba(10,191,163,0.12);
+      --line:        rgba(11,15,20,0.08);
+      --line-dark:   rgba(255,255,255,0.10);
+      --radius:      16px;
+      --radius-lg:   28px;
+      --nav-h:       72px;
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    html {
+      scroll-behavior: smooth;
+      overflow-x: clip;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
+    }
+    .reveal.is-visible { opacity: 1; transform: none; }
+    .reveal[data-split] { opacity: 1; transform: none; } /* defensive */
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal-left.is-visible { opacity: 1; transform: none; }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+    }
+    .reveal-right.is-visible { opacity: 1; transform: none; }
+
+    /* stagger delays */
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+
+    /* ── Utility ── */
+    .container {
+      width: min(1200px, 100% - 2rem);
+      margin-inline: auto;
+    }
+    .container-wide {
+      width: min(1400px, 100% - 2rem);
+      margin-inline: auto;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 900;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease;
+    }
+    .nav.scrolled {
+      background: rgba(11, 15, 20, 0.90);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      box-shadow: 0 1px 0 var(--line-dark);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      line-height: 1;
+    }
+    .nav-logo-top {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .nav-logo-main {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.75);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0; bottom: -4px;
+      width: 0; height: 2px;
+      background: var(--teal);
+      transition: width 0.3s var(--ease-out);
+      border-radius: 1px;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.55rem 1.25rem;
+      background: var(--teal);
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .nav-cta:hover {
+      background: var(--teal-dark);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(10,191,163,0.35);
+    }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #fff;
+      border-radius: 2px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile {
+      display: none;
+      position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(11, 15, 20, 0.97);
+      backdrop-filter: blur(20px);
+      padding: 2rem 1.5rem;
+      z-index: 899;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--line-dark);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover { color: var(--teal); }
+    .nav-mobile .nav-cta { align-self: flex-start; margin-top: 0.5rem; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--bg-dark);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: saturate(0.6) brightness(0.35);
+    }
+
+    .hero-mesh {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(ellipse 70% 60% at 15% 60%, rgba(10,191,163,0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 50% at 85% 25%, rgba(10,191,163,0.14) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 55% 85%, rgba(10,191,163,0.10) 0%, transparent 55%);
+      animation: meshPulse 10s ease-in-out infinite alternate;
+    }
+    @keyframes meshPulse {
+      0%   { opacity: 0.75; }
+      100% { opacity: 1; }
+    }
+
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px;
+      mix-blend-mode: overlay;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      padding-block: 8rem 5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid rgba(10,191,163,0.4);
+      border-radius: 999px;
+      background: rgba(10,191,163,0.08);
+      margin-bottom: 2rem;
+      animation: fadeInDown 0.7s var(--ease-out) 0.2s both;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .hero-badge span {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+
+    .hero-title {
+      font-size: clamp(2.8rem, 6.5vw, 5.5rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      max-width: 16ch;
+      text-wrap: balance;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.35s both;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 1.8vw, 1.2rem);
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      max-width: 46ch;
+      line-height: 1.65;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s var(--ease-out) 0.5s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s var(--ease-out) 0.65s both;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: var(--teal);
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 999px;
+      letter-spacing: 0.01em;
+      transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-primary:hover {
+      background: var(--teal-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(10,191,163,0.4);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      border: 1.5px solid rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      font-weight: 600;
+      border-radius: 999px;
+      letter-spacing: 0.01em;
+      transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    }
+    .btn-ghost:hover {
+      border-color: var(--teal);
+      color: var(--teal);
+      background: rgba(10,191,163,0.06);
+    }
+
+    .hero-stats {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      animation: fadeInUp 0.8s var(--ease-out) 0.8s both;
+      flex-wrap: wrap;
+    }
+    .hero-stat-value {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .hero-stat-value span { color: var(--teal); }
+    .hero-stat-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 0.3rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+    .hero-stat-sep { width: 1px; height: 40px; background: rgba(255,255,255,0.12); }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeIn 1s var(--ease-out) 1.2s both;
+    }
+    .hero-scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-weight: 500;
+    }
+    .scroll-arrow {
+      width: 28px; height: 28px;
+      border: 1.5px solid rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: bounceDown 2s ease-in-out infinite;
+    }
+    .scroll-arrow svg { width: 12px; height: 12px; }
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(5px); }
+    }
+
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: none; }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── STRIP DE CONFIANZA ── */
+    .trust-strip {
+      background: var(--bg-dark);
+      border-top: 1px solid rgba(10,191,163,0.15);
+      padding: 1.5rem 0;
+    }
+    .trust-strip-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+    .trust-item svg { flex-shrink: 0; }
+
+    /* ── SOBRE NOSOTROS ── */
+    .section-about {
+      padding-block: 8rem;
+      background: var(--bg);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-inner {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .about-img-inner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      transition: transform 0.6s var(--ease-out);
+    }
+    .about-img-wrap:hover .about-img-inner img { transform: scale(1.04); }
+
+    .about-badge-float {
+      position: absolute;
+      bottom: -1.5rem;
+      right: -1.5rem;
+      background: var(--teal);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 20px 48px rgba(10,191,163,0.35);
+      text-align: center;
+    }
+    .about-badge-float strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .about-badge-float p {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-top: 0.25rem;
+    }
+
+    .about-kicker {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      text-wrap: balance;
+    }
+    .section-title em {
+      font-style: normal;
+      color: var(--teal);
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 1.25rem;
+    }
+    .about-philosophy {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      background: var(--teal-light);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      margin-top: 2rem;
+    }
+    .about-philosophy svg { flex-shrink: 0; margin-top: 2px; }
+    .about-philosophy p {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--teal-dark);
+      line-height: 1.5;
+    }
+
+    /* ── SERVICIOS ── */
+    .section-services {
+      padding-block: 8rem;
+      background: var(--bg-section);
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--ink-soft);
+      max-width: 50ch;
+      margin-inline: auto;
+      line-height: 1.65;
+      margin-top: 0.75rem;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--bg);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2rem;
+      border: 1.5px solid var(--line);
+      transition: border-color 0.3s ease, transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+      cursor: default;
+    }
+    .service-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-6px);
+      box-shadow: 0 24px 56px rgba(10,191,163,0.12);
+    }
+    .service-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: var(--teal-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      transition: background 0.3s ease;
+    }
+    .service-card:hover .service-icon { background: var(--teal); }
+    .service-icon svg { transition: filter 0.3s ease; }
+    .service-card:hover .service-icon svg path,
+    .service-card:hover .service-icon svg circle,
+    .service-card:hover .service-icon svg rect { stroke: #fff; }
+    .service-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.01em;
+    }
+    .service-desc {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    /* last 2 cards center row */
+    .services-grid .service-card:nth-child(4) { grid-column: 1 / 2; }
+    .services-grid .service-card:nth-child(5) { grid-column: 2 / 3; }
+
+    @media (max-width: 900px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .services-grid .service-card:nth-child(4),
+      .services-grid .service-card:nth-child(5) { grid-column: auto; }
+    }
+
+    /* ── POR QUÉ ELEGIRNOS ── */
+    .section-why {
+      padding-block: 8rem;
+      background: var(--bg-dark);
+    }
+    .section-why .section-title { color: #fff; }
+    .section-why .section-sub { color: rgba(255,255,255,0.55); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .why-card {
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      transition: border-color 0.3s ease, background 0.3s ease;
+    }
+    .why-card:hover {
+      border-color: rgba(10,191,163,0.4);
+      background: rgba(10,191,163,0.04);
+    }
+    .why-number {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: var(--teal);
+      letter-spacing: -0.05em;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      opacity: 0.4;
+    }
+    .why-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+    }
+    .why-desc {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.7;
+    }
+
+    /* ── TESTIMONIOS ── */
+    .section-testimonials {
+      padding-block: 8rem;
+      background: var(--bg);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 4rem;
+    }
+    .testimonial-card {
+      background: var(--bg-section);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem 2rem;
+      border: 1.5px solid var(--line);
+      transition: border-color 0.3s ease, transform 0.3s var(--ease-out);
+    }
+    .testimonial-card:hover {
+      border-color: var(--teal);
+      transform: translateY(-4px);
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 1.25rem;
+    }
+    .testimonial-stars svg { color: var(--teal); }
+    .testimonial-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      border-top: 1px solid var(--line);
+      padding-top: 1.25rem;
+    }
+    .testimonial-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--teal-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--teal);
+      flex-shrink: 0;
+    }
+    .testimonial-name {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--ink);
+    }
+    .testimonial-role {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+      margin-top: 1px;
+    }
+
+    /* ── CTA BAND ── */
+    .section-cta-band {
+      background: var(--teal);
+      padding-block: 5rem;
+    }
+    .cta-band-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .cta-band-title {
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      text-wrap: balance;
+    }
+    .cta-band-sub {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.8);
+      margin-top: 0.5rem;
+    }
+    .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 2rem;
+      background: #fff;
+      color: var(--teal-dark);
+      font-size: 0.95rem;
+      font-weight: 700;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.15);
+    }
+
+    /* ── CONTACTO ── */
+    .section-contact {
+      padding-block: 8rem;
+      background: var(--bg-section);
+    }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact-info-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .contact-info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      background: var(--teal-glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-info-item-text strong {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      margin-bottom: 0.25rem;
+    }
+    .contact-info-item-text span, .contact-info-item-text a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.4;
+      transition: color 0.2s;
+    }
+    .contact-info-item-text a:hover { color: var(--teal); }
+
+    .contact-map-wrap {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      height: 380px;
+      background: var(--line);
+    }
+    .contact-map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      background: var(--bg-dark);
+      padding-block: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.01em;
+    }
+    .footer-logo span { color: var(--teal); }
+    .footer-copy {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-note {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.2);
+      text-align: right;
+      font-style: italic;
+    }
+
+    /* ── WhatsApp FAB ── */
+    .whatsapp-fab {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 800;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+      transition: transform 0.25s var(--ease-out), box-shadow 0.25s ease;
+    }
+    .whatsapp-fab:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 16px 40px rgba(37,211,102,0.55);
+    }
+    .whatsapp-fab svg { width: 28px; height: 28px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .about-img-wrap { max-width: 480px; margin-inline: auto; }
+      .about-badge-float { bottom: -1rem; right: 0; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .contact-map-wrap { height: 280px; }
+    }
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-title { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+      .hero-stats { gap: 1.5rem; }
+      .hero-stat-sep { display: none; }
+      .why-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-band-inner { flex-direction: column; text-align: center; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+      .footer-note { text-align: left; }
+      .trust-strip-inner { flex-direction: column; gap: 1rem; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .services-grid .service-card:nth-child(4),
+      .services-grid .service-card:nth-child(5) { grid-column: auto; }
+      .hero-actions { flex-direction: column; align-items: flex-start; }
+      .section-about, .section-services, .section-why,
+      .section-testimonials, .section-contact { padding-block: 5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav" id="main-nav" role="navigation" aria-label="Navegación principal">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#inicio" class="nav-logo" aria-label="Paraja Ramos Fisioterapia — inicio">
+          <span class="nav-logo-top">Fisioterapia</span>
+          <span class="nav-logo-main">Paraja Ramos</span>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="#sobre-nosotros">Sobre nosotros</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#testimonios">Opiniones</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+        <a href="tel:+34984181287" class="nav-cta" aria-label="Llamar para pedir cita">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Pide cita
+        </a>
+        <button class="nav-hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile nav -->
+  <nav class="nav-mobile" id="mobile-menu" aria-label="Menú móvil">
+    <a href="#sobre-nosotros">Sobre nosotros</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#testimonios">Opiniones</a>
+    <a href="#contacto">Contacto</a>
+    <a href="tel:+34984181287" class="nav-cta">Pide tu cita</a>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero" id="inicio" aria-labelledby="hero-title">
+    <div class="hero-bg">
+      <img src="assets/img/hero2.jpg" alt="Atleta en acción — fisioterapia deportiva" loading="eager" fetchpriority="high">
+    </div>
+    <div class="hero-mesh" aria-hidden="true"></div>
+    <div class="hero-grain" aria-hidden="true"></div>
+
+    <div class="container hero-content">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span>Fisioterapia · Gijón, Asturias</span>
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        Muévete sin <em>límites</em>.
+      </h1>
+      <p class="hero-sub">
+        Especialistas en terapia manual, deporte y prevención.<br>
+        Porque cada cuerpo tiene su historia — y su solución.
+      </p>
+
+      <div class="hero-actions">
+        <a href="tel:+34984181287" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          Pide tu cita
+        </a>
+        <a href="#servicios" class="btn-ghost">Ver servicios</a>
+      </div>
+
+      <div class="hero-stats" aria-label="Valoraciones y estadísticas">
+        <div class="hero-stat">
+          <div class="hero-stat-value"><span id="stat-stars">5.0</span> ★</div>
+          <div class="hero-stat-label">Valoración Google</div>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-value"><span id="stat-reviews">11</span></div>
+          <div class="hero-stat-label">Reseñas verificadas</div>
+        </div>
+        <div class="hero-stat-sep" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-value"><span>100</span>%</div>
+          <div class="hero-stat-label">Trato personalizado</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint" aria-hidden="true">
+      <span>Descubre más</span>
+      <div class="scroll-arrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TRUST STRIP ── -->
+  <div class="trust-strip" aria-label="Datos de confianza">
+    <div class="container">
+      <div class="trust-strip-inner">
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" aria-hidden="true"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+          Av. de Portugal 9, 33207 Gijón
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          984 18 12 87
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          5.0 · 11 reseñas en Google
+        </div>
+        <div class="trust-item">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+          Especialista Lucía Paraja Ramos
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SOBRE NOSOTROS ── -->
+  <section class="section-about" id="sobre-nosotros" aria-labelledby="about-title">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-img-wrap reveal-left">
+          <div class="about-img-inner">
+            <img src="assets/img/about.jpg" alt="Lucía Paraja Ramos, fisioterapeuta" loading="lazy">
+          </div>
+          <div class="about-badge-float" aria-hidden="true">
+            <strong>★ 5.0</strong>
+            <p>Google Reviews</p>
+          </div>
+        </div>
+
+        <div class="about-text-block">
+          <p class="about-kicker reveal">Sobre nosotros</p>
+          <h2 class="section-title reveal stagger-1" id="about-title">
+            Fisioterapia con <em>alma</em> y criterio.
+          </h2>
+          <p class="about-text reveal stagger-2">
+            Soy <strong>Lucía Paraja Ramos</strong>, fisioterapeuta colegiada con vocación real por la salud y el movimiento. En mi consulta de Gijón, cada sesión es una conversación: te escucho, evalúo y diseño un plan que tiene sentido para tu cuerpo y tu vida.
+          </p>
+          <p class="about-text reveal stagger-3">
+            No creo en los tratamientos estándar. Creo en entender qué te pasa, por qué te pasa y cómo podemos solucionarlo juntos — de forma eficaz, directa y sin rodeos.
+          </p>
+
+          <div class="about-philosophy reveal stagger-4" role="blockquote">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <p>
+              "Las personas, la salud, la prevención y el deporte son lo primero. Siempre."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICIOS ── -->
+  <section class="section-services" id="servicios" aria-labelledby="services-title">
+    <div class="container">
+      <div class="section-header">
+        <p class="about-kicker reveal">Lo que hacemos</p>
+        <h2 class="section-title reveal stagger-1" id="services-title">
+          Tratamientos a tu <em>medida</em>.
+        </h2>
+        <p class="section-sub reveal stagger-2">
+          Cada servicio está pensado para devolverte el movimiento que mereces, con técnicas contrastadas y un seguimiento real.
+        </p>
+      </div>
+
+      <div class="services-grid">
+
+        <!-- Terapia Manual -->
+        <div class="service-card reveal stagger-1">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 11V6a2 2 0 00-2-2v0a2 2 0 00-2 2v0"/><path d="M14 10V4a2 2 0 00-2-2v0a2 2 0 00-2 2v2"/><path d="M10 10.5V6a2 2 0 00-2-2v0a2 2 0 00-2 2v8"/><path d="M18 8a2 2 0 114 0v6a8 8 0 01-8 8H8a8 8 0 01-7.76-6l-1.2-4a2 2 0 012-2h.2"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Terapia Manual</h3>
+          <p class="service-desc">
+            Técnicas de movilización articular y trabajo sobre tejidos blandos para recuperar la función y eliminar el dolor. Tratamiento preciso, sin atajos.
+          </p>
+        </div>
+
+        <!-- Rehabilitación -->
+        <div class="service-card reveal stagger-2">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Rehabilitación</h3>
+          <p class="service-desc">
+            Programas de recuperación estructurados para postoperatorios, lesiones crónicas y procesos de readaptación. Avanzamos contigo, paso a paso.
+          </p>
+        </div>
+
+        <!-- Lesiones Deportivas -->
+        <div class="service-card reveal stagger-3">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Lesiones Deportivas</h3>
+          <p class="service-desc">
+            Desde esguinces y roturas hasta tendinopatías. Diagnosis rápida, protocolo claro y vuelta a la actividad en el menor tiempo posible.
+          </p>
+        </div>
+
+        <!-- Prevención -->
+        <div class="service-card reveal stagger-4">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Prevención</h3>
+          <p class="service-desc">
+            La mejor lesión es la que no ocurre. Análisis postural, trabajo muscular preventivo y pautas para mantener tu cuerpo en óptimas condiciones.
+          </p>
+        </div>
+
+        <!-- Tratamiento Personalizado -->
+        <div class="service-card reveal stagger-5">
+          <div class="service-icon" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/><polyline points="16 11 18 13 22 9"/>
+            </svg>
+          </div>
+          <h3 class="service-title">Tratamiento Personalizado</h3>
+          <p class="service-desc">
+            Cada plan es único. Adaptamos las técnicas, la frecuencia y los objetivos a tu cuerpo, tu deporte y tu ritmo de vida.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── POR QUÉ ELEGIRNOS ── -->
+  <section class="section-why" id="por-que" aria-labelledby="why-title">
+    <div class="container">
+      <div class="section-header">
+        <p class="about-kicker reveal" style="color: rgba(10,191,163,0.8)">Por qué nosotros</p>
+        <h2 class="section-title reveal stagger-1" id="why-title">
+          Tres razones de peso.
+        </h2>
+        <p class="section-sub reveal stagger-2">
+          No competimos por precio. Competimos por resultados y por el trato que mereces.
+        </p>
+      </div>
+
+      <div class="why-grid">
+        <div class="why-card reveal stagger-1">
+          <div class="why-number" aria-hidden="true">01</div>
+          <h3 class="why-title">5 estrellas en Google</h3>
+          <p class="why-desc">
+            Valoración perfecta con 11 reseñas reales. No es suerte — es consecuencia de hacer bien el trabajo cada día y de que nuestros pacientes notan la diferencia.
+          </p>
+        </div>
+        <div class="why-card reveal stagger-2">
+          <div class="why-number" aria-hidden="true">02</div>
+          <h3 class="why-title">Trato cercano y real</h3>
+          <p class="why-desc">
+            Aquí no eres un número de historial. Te conocemos, seguimos tu evolución y estamos disponibles cuando lo necesitas. La confianza se construye, no se promete.
+          </p>
+        </div>
+        <div class="why-card reveal stagger-3">
+          <div class="why-number" aria-hidden="true">03</div>
+          <h3 class="why-title">Especialización en deporte</h3>
+          <p class="why-desc">
+            Entendemos cómo funciona el cuerpo en movimiento y bajo presión. Si entrenas o compites, sabremos lo que necesitas para rendir — y para no lesionarte.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIOS ── -->
+  <section class="section-testimonials" id="testimonios" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="section-header">
+        <p class="about-kicker reveal">Lo que dicen nuestros pacientes</p>
+        <h2 class="section-title reveal stagger-1" id="testimonials-title">
+          La mejor <em>carta de presentación</em>.
+        </h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal stagger-1">
+          <div class="testimonial-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Llevaba meses con dolor lumbar crónico y no encontraba solución. Lucía lo entendió desde la primera visita. En pocas sesiones volví a entrenar sin molestias. Es de las mejores profesionales que he conocido."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">A</div>
+            <div>
+              <div class="testimonial-name">Adrián M.</div>
+              <div class="testimonial-role">Corredor de montaña, Gijón</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal stagger-2">
+          <div class="testimonial-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Lo que más me sorprendió fue el trato tan personal. No me sentí una paciente más — me sentí escuchada de verdad. Y los resultados lo dicen todo. Totalmente recomendable."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">S</div>
+            <div>
+              <div class="testimonial-name">Sofía G.</div>
+              <div class="testimonial-role">Paciente, Gijón</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card reveal stagger-3">
+          <div class="testimonial-stars" aria-label="5 estrellas">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--teal)" aria-hidden="true"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">
+            "Fui con una lesión de rodilla a dos semanas de una carrera. Lucía hizo lo imposible. Pude competir, finalicé y lo disfruté. Profesionalidad y compromiso del más alto nivel."
+          </p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">C</div>
+            <div>
+              <div class="testimonial-name">Carlos R.</div>
+              <div class="testimonial-role">Triatleta amateur, Asturias</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA BAND ── -->
+  <section class="section-cta-band" aria-label="Llamada a la acción">
+    <div class="container">
+      <div class="cta-band-inner">
+        <div class="reveal-left">
+          <h2 class="cta-band-title">¿Lista para empezar?<br>Tu cuerpo lo nota al primer día.</h2>
+          <p class="cta-band-sub">Llámanos y te damos cita en Gijón.</p>
+        </div>
+        <div class="reveal-right">
+          <a href="tel:+34984181287" class="btn-white">
+            984 18 12 87 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CONTACTO ── -->
+  <section class="section-contact" id="contacto" aria-labelledby="contact-title">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <p class="about-kicker reveal">Cómo llegar</p>
+          <h2 class="section-title reveal stagger-1" id="contact-title">
+            Estamos en <em>Gijón</em>.
+          </h2>
+          <p class="about-text reveal stagger-2" style="margin-bottom: 0; margin-top: 0.5rem;">
+            Te esperamos en el corazón de la ciudad. Aparcamiento fácil y acceso cómodo.
+          </p>
+
+          <ul class="contact-info-list" aria-label="Información de contacto">
+            <li class="contact-info-item reveal stagger-2">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+              </div>
+              <div class="contact-info-item-text">
+                <strong>Dirección</strong>
+                <a href="https://maps.google.com/?q=Av.+de+Portugal+9,+33207+Gijón" target="_blank" rel="noopener noreferrer">
+                  Av. de Portugal 9, 33207 Gijón, Asturias
+                </a>
+              </div>
+            </li>
+            <li class="contact-info-item reveal stagger-3">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10a19.79 19.79 0 01-3.07-8.67A2 2 0 012 1.18h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              </div>
+              <div class="contact-info-item-text">
+                <strong>Teléfono</strong>
+                <a href="tel:+34984181287">984 18 12 87</a>
+              </div>
+            </li>
+            <li class="contact-info-item reveal stagger-4">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="contact-info-item-text">
+                <strong>Horario</strong>
+                <span>Lunes a Viernes · 9:00 – 20:00</span>
+              </div>
+            </li>
+            <li class="contact-info-item reveal stagger-5">
+              <div class="contact-icon" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--teal)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <div class="contact-info-item-text">
+                <strong>Valoración</strong>
+                <span>5.0 sobre 5 · 11 reseñas en Google</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="contact-map-wrap reveal-right">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2895.0!2d-5.6632!3d43.5322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd367c7a1f0e7aa5%3A0x1!2sAv.+de+Portugal+9%2C+33207+Gij%C3%B3n!5e0!3m2!1ses!2ses!4v1696000000000"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Mapa de localización de Paraja Ramos Fisioterapia en Gijón"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">
+          Paraja Ramos <span>Fisioterapia</span>
+        </div>
+        <p class="footer-copy">
+          © 2026 · Av. de Portugal 9, Gijón · 984 18 12 87
+        </p>
+        <p class="footer-note">
+          Web de demostración — avlab.agency
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ── WhatsApp FAB ── -->
+  <a href="https://wa.me/34984181287" target="_blank" rel="noopener noreferrer"
+     class="whatsapp-fab" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <!-- ── JAVASCRIPT (IIFE) ── -->
+  <script defer src="lib/gsap.min.js?v=20260530"></script>
+  <script defer src="lib/ScrollTrigger.min.js?v=20260530"></script>
+  <script>
+  (function () {
+    "use strict";
+
+    function safe(fn, name) {
+      try { fn(); } catch (e) { console.warn("[" + name + "]", e); }
+    }
+
+    /* ── NAV scroll effect ── */
+    function initNav() {
+      var nav = document.getElementById("main-nav");
+      if (!nav) return;
+      var handler = function () {
+        if (window.scrollY > 40) nav.classList.add("scrolled");
+        else nav.classList.remove("scrolled");
+      };
+      window.addEventListener("scroll", handler, { passive: true });
+      handler();
+    }
+
+    /* ── Hamburger menu ── */
+    function initHamburger() {
+      var btn = document.getElementById("hamburger");
+      var menu = document.getElementById("mobile-menu");
+      if (!btn || !menu) return;
+      btn.addEventListener("click", function () {
+        var open = menu.classList.toggle("open");
+        btn.classList.toggle("open", open);
+        btn.setAttribute("aria-expanded", open.toString());
+      });
+      // Close on link click
+      menu.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          menu.classList.remove("open");
+          btn.classList.remove("open");
+          btn.setAttribute("aria-expanded", "false");
+        });
+      });
+    }
+
+    /* ── Smooth scroll for anchors ── */
+    function initSmoothScroll() {
+      document.addEventListener("click", function (e) {
+        var a = e.target.closest('a[href^="#"]');
+        if (!a) return;
+        var id = a.getAttribute("href");
+        if (!id || id === "#") return;
+        var el = document.querySelector(id);
+        if (!el) return;
+        e.preventDefault();
+        var navOffset = 80;
+        var top = el.getBoundingClientRect().top + window.scrollY - navOffset;
+        window.scrollTo({
+          top: top,
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"
+        });
+      });
+    }
+
+    /* ── Scroll reveal via IntersectionObserver ── */
+    function initReveals() {
+      var targets = document.querySelectorAll(".reveal, .reveal-left, .reveal-right");
+      if (!targets.length) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) {
+            e.target.classList.add("is-visible");
+            io.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.04, rootMargin: "0px 0px -3% 0px" });
+
+      targets.forEach(function (el) { io.observe(el); });
+
+      // 6s safety net
+      setTimeout(function () {
+        document.querySelectorAll(".reveal:not(.is-visible), .reveal-left:not(.is-visible), .reveal-right:not(.is-visible)").forEach(function (el) {
+          if (el.getBoundingClientRect().top < window.innerHeight) {
+            el.classList.add("is-visible");
+          }
+        });
+      }, 6000);
+    }
+
+    /* ── Image tint on hover (about section) ── */
+    function initImageHover() {
+      // handled by CSS
+    }
+
+    /* ── Service icon hover stroke ── */
+    function initServiceHover() {
+      document.querySelectorAll(".service-card").forEach(function (card) {
+        var icon = card.querySelector(".service-icon");
+        if (!icon) return;
+        var svgEls = icon.querySelectorAll("path, circle, polyline, polygon, rect, line");
+        var origColor = "var(--teal)";
+        card.addEventListener("mouseover", function (e) {
+          if (!card.contains(e.relatedTarget)) {
+            svgEls.forEach(function (el) { el.setAttribute("stroke", "#fff"); });
+          }
+        });
+        card.addEventListener("mouseout", function (e) {
+          if (!card.contains(e.relatedTarget)) {
+            svgEls.forEach(function (el) { el.setAttribute("stroke", origColor); });
+          }
+        });
+      });
+    }
+
+    /* ── Boot ── */
+    function boot() {
+      safe(initNav, "initNav");
+      safe(initHamburger, "initHamburger");
+      safe(initSmoothScroll, "initSmoothScroll");
+      safe(initReveals, "initReveals");
+      safe(initServiceHover, "initServiceHover");
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", boot);
+    } else {
+      boot();
+    }
+
+  })();
+  </script>
+
+</body>
+</html>

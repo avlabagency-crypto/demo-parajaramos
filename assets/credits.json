@@ -1,0 +1,79 @@
+{
+  "hero": {
+    "src": "assets/img/hero.jpg",
+    "title": "File:Pain-Doctor-Knee-Injection-Procedure-3.jpg",
+    "creator": "PainDoctorUSA",
+    "creator_url": "https://commons.wikimedia.org/w/index.php?title=User:PainDoctorUSA&action=edit&redlink=1",
+    "license": "by-sa",
+    "license_version": "4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=38193223",
+    "source": "wikimedia"
+  },
+  "services": {
+    "src": "assets/img/services.jpg",
+    "title": "Information about Chiropractic Treatment",
+    "creator": "tomknudsen1",
+    "creator_url": "https://www.flickr.com/photos/146413535@N04",
+    "license": "by-sa",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/146413535@N04/28603890914",
+    "source": "flickr"
+  },
+  "sport": {
+    "src": "assets/img/sport.jpg",
+    "title": "mitchell phillips studio57clinic",
+    "creator": "studio57clinic",
+    "creator_url": "https://www.flickr.com/photos/56267310@N02",
+    "license": "by-nc",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/56267310@N02/11820193964",
+    "source": "flickr"
+  },
+  "about": {
+    "src": "assets/img/about.jpg",
+    "title": "Staff chart for NHS Nightingale Hospital London",
+    "creator": "NHS Nightingale Hospital London",
+    "creator_url": "https://www.flickr.com/photos/89097492@N06",
+    "license": "by-nc-sa",
+    "license_version": "4.0",
+    "license_url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+    "foreign_landing_url": "https://collection.sciencemuseumgroup.org.uk/objects/co8820916/staff-chart-for-nhs-nightingale-hospital-london",
+    "source": "sciencemuseum"
+  },
+  "prevention": {
+    "src": "assets/img/prevention.jpg",
+    "title": "WHO EN HealthyAtHome-Physical-activity if you are at home during COVID-19 outbreak",
+    "creator": "World Health Organization",
+    "creator_url": "https://www.flickr.com/photos/28486074@N08",
+    "license": "by-sa",
+    "license_version": "3.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en/",
+    "foreign_landing_url": "https://commons.wikimedia.org/w/index.php?curid=95746593",
+    "source": "wikimedia"
+  },
+  "hero2": {
+    "src": "assets/img/hero2.jpg",
+    "title": "Royal Canal Trail Marathon - Summer 2013",
+    "creator": "Peter Mooney",
+    "creator_url": "https://www.flickr.com/photos/25874444@N00",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/25874444@N00/9106303369",
+    "source": "flickr"
+  },
+  "hero4": {
+    "src": "assets/img/hero4.jpg",
+    "title": "Soccer - Army Youth Sports and Fitness - CYSS - Camp Humphreys, South Korea - 111001",
+    "creator": "USAG-Humphreys",
+    "creator_url": "https://www.flickr.com/photos/31687107@N07",
+    "license": "by",
+    "license_version": "2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0/",
+    "foreign_landing_url": "https://www.flickr.com/photos/31687107@N07/6205923856",
+    "source": "flickr"
+  }
+}
